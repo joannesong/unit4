@@ -16,6 +16,7 @@ import android.view.ViewGroup;
  * A simple {@link Fragment} subclass.
  */
 public class DisplayFragment extends Fragment {
+    private Bundle bundle;
     private Context context;
 
     public DisplayFragment() {
@@ -30,7 +31,9 @@ public class DisplayFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_display, container, false);
         context = view.getContext();
+        bundle = getArguments();
         TopFragment topFragment = new TopFragment();
+        topFragment.setArguments(bundle);
         FragmentManager topFragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
         FragmentTransaction topFragmentTransaction = topFragmentManager.beginTransaction();
         topFragmentTransaction.addToBackStack(null).replace(R.id.top_fragment_container, topFragment);
