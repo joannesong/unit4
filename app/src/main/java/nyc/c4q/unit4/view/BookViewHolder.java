@@ -13,6 +13,7 @@ import android.widget.TextView;
 import nyc.c4q.unit4.BottomFragment;
 import nyc.c4q.unit4.DisplayFragment;
 import nyc.c4q.unit4.R;
+import nyc.c4q.unit4.TopFragment;
 import nyc.c4q.unit4.model.Books;
 
 /**
@@ -24,6 +25,7 @@ public class BookViewHolder extends RecyclerView.ViewHolder{
     private TextView author;
     private TextView year;
     private Context context;
+    private Bundle bundle;
 
     public BookViewHolder(View itemView) {
         super(itemView);
@@ -31,6 +33,7 @@ public class BookViewHolder extends RecyclerView.ViewHolder{
         author = itemView.findViewById(R.id.author_text);
         year = itemView.findViewById(R.id.year_text);
         context = itemView.getContext();
+        bundle = new Bundle();
 
     }
 
@@ -42,19 +45,20 @@ public class BookViewHolder extends RecyclerView.ViewHolder{
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("title", title.getText() + "");
-                bundle.putString("author", author.getText() + "");
-                bundle.putString("year", year.getText() + "");
 
-                Log.e("bundleVH", bundle.toString());
+                bundle.putString("title", title.getText().toString());
+                bundle.putString("author", author.getText().toString());
+                bundle.putString("year", year.getText().toString());
 
-                DisplayFragment displayFragment = new DisplayFragment();
-                displayFragment.setArguments(bundle);
+//                Log.e("bundleVH", bundle.toString());
+
+                TopFragment topFragment = new TopFragment();
+                topFragment.setArguments(bundle);
                 FragmentManager fragmentManager= ((FragmentActivity) context).getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.addToBackStack(null).replace(R.id.fragment_container, displayFragment);
-                fragmentTransaction.commit();
+                fragmentManager.beginTransaction().replace(R.id.top_fragment_container,topFragment).commit();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.addToBackStack(null).replace(R.id.top_fragment_container, topFragment);
+//                fragmentTransaction.commit();
 
             }
         });

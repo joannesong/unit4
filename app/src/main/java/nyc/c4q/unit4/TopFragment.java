@@ -17,7 +17,6 @@ public class TopFragment extends Fragment {
     private TextView title;
     private TextView author;
     private TextView year;
-    private Bundle bundle;
     private String setTitle;
     private String setAuthor;
     private String setYear;
@@ -33,16 +32,14 @@ public class TopFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_top, container, false);
-        bundle = getArguments();
-        title = view.findViewById(R.id.title_text);
-        author = view.findViewById(R.id.author_text);
-        year = view.findViewById(R.id.year_text);
+        Bundle bundle = getArguments();
+        title = (TextView) view.findViewById(R.id.top_title);
+        author = (TextView) view.findViewById(R.id.top_author);
+        year = (TextView) view.findViewById(R.id.top_year);
 
-
-//        Log.e("bundle", bundle.toString());
-        setTitle = bundle.getString("title");
-        setAuthor = bundle.getString("author");
-        setYear = bundle.getString("year");
+        setTitle =  bundle.getString("title","");
+        setAuthor = bundle.getString("author","");
+        setYear = bundle.getString("year","");
 
         title.setText(setTitle);
         author.setText(setAuthor);
