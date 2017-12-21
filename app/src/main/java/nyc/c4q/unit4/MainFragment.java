@@ -40,7 +40,7 @@ public class MainFragment extends Fragment {
                 DisplayFragment displayFragment = new DisplayFragment();
                 FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.addToBackStack("DisplayFragment").replace(R.id.fragment_container,displayFragment);
+                fragmentTransaction.addToBackStack("DisplayFragment").replace(R.id.fragment_container, displayFragment);
                 fragmentTransaction.commit();
             }
         });
